@@ -141,11 +141,13 @@ params.result_wrapper.addEventListener('click', e => {
     const item_container = e.target.closest('.book'),
       details = item_container.querySelector('.details');
 
-    if(!details.dataset.height) {
-      details.dataset.height = getHiddenHeight(details);
+    // if(!details.dataset.height) {
+    //   details.dataset.height = getHiddenHeight(details);
+    //   details.style.setProperty('--details-height', details.dataset.height +'px');
+    // }
+    if(!getComputedStyle(details).getPropertyValue('--details-height')) {
+      details.style.setProperty('--details-height', getHiddenHeight(details) +'px');
     }
-
-    details.style.setProperty('--details-height', details.dataset.height +'px');
 
     item_container.classList.toggle('details-on');
   }
