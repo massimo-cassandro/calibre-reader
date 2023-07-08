@@ -1,0 +1,64 @@
+{
+  "name": "calibre-reader-1",
+  "description": "Calibre reader (v.1)",
+  "version": "0.4.2",
+  "license": "MIT",
+  "author": "Massimo Cassandro",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/massimo-cassandro/calibre-reader-1.git#main"
+  },
+  "homepage": "https://github.com/calibre-reader-1#readme",
+  "keywords": [],
+  "scripts": {
+    "rollup": "npx rollup --config ./rollup.config.mjs --watch",
+    "sass": "npx sass ./src/calibre-reader.scss:./dist/calibre-reader.css --load-path=./node_modules/ --style=compressed --watch",
+    "UPD-version": "npx update-version --config=./dev-utilities.config.mjs",
+    "upd@m": "npx upd@m",
+    "npm update": "npm update",
+    "php server": "php -S localhost:8000 -t dist/",
+    "build_icons": "gulp --gulpfile ./src/icons/gulpfile.cjs",
+    "favicons": "npx create-favicons --dir=./work-files"
+  },
+  "browserslist": [
+    "last 1 version",
+    "iOS >= 13",
+    "Safari >= 12",
+    "not ie <= 11",
+    "> 3% in IT"
+  ],
+  "stylelint": {
+    "extends": "@massimo-cassandro/linters-config/stylelintrc.js",
+    "ignoreFiles": [
+      "**/*.css"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@massimo-cassandro/linters-config/eslintrc.js"
+    ],
+    "ignorePatterns": []
+  },
+  "devDependencies": {
+    "@massimo-cassandro/dev-utilities": "^1.17.1",
+    "@massimo-cassandro/linters-config": "^1.4.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-terser": "^0.4.0",
+    "gulp": "^4.0.2",
+    "gulp-dom": "^1.0.0",
+    "gulp-inject-string": "^1.1.2",
+    "gulp-jsbeautifier": "^3.0.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-replace": "^1.1.4",
+    "gulp-svgmin": "^4.1.0",
+    "gulp-svgstore": "^9.0.0",
+    "rollup": "^3.20.2",
+    "sass": "^1.61.0"
+  },
+  "dependencies": {
+    "@massimo-cassandro/js-utilities": "^1.2.0",
+    "the-new-css-reset": "^1.8.4"
+  }
+}

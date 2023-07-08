@@ -1,0 +1,30 @@
+.icon {
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  aspect-ratio: 1;
+  fill: none;
+  stroke: currentcolor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 16px;
+
+  &.bold {
+    stroke-width: 24px;
+
+  }
+
+  &.top-adjust {
+    position: relative;
+    top: .3em;
+  }
+
+  &.dark {
+    stroke: var(--blu-grigio-scuro);
+  }
+
+  &.fill-icon{
+    fill: currentcolor;
+    stroke: none;
+  }
+}

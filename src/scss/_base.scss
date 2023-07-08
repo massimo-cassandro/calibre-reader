@@ -1,0 +1,56 @@
+p {
+  margin-bottom: .5rem;
+}
+.text-muted {
+  color: var(--grigio);
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+strong {
+  font-weight: 700;
+}
+em {
+  font-style: italic;
+}
+.mx-1 {
+  margin-right: .2rem;
+  margin-left: .2rem;
+}
+.mr-1 {
+  margin-right: .2rem;
+}
+.ml-1 {
+  margin-left: .2rem;
+}
+.ml-5 {
+  margin-left: 1.5rem;
+}
+.ml-auto {
+  margin-left: auto;
+}
+.p-1 {
+  padding: .2rem;
+}
+.scaffale {
+  font-size: var(--xsmall);
+  font-weight: 350;
+  text-transform: uppercase;
+}
+a, [role='button'] {
+  /* stylelint-disable-next-line declaration-no-important */
+  color: var(--blu) !important;
+  cursor: pointer;
+
+  &:hover, &:active {
+    text-decoration: underline;
+  }
+}
+
+ul {
+  margin: 1rem 0;
+  list-style-type: disc;
+}
+li {
+  margin-left: 1.5rem;
+}

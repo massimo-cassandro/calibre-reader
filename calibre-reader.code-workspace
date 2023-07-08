@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		
+		"explorerExclude.backup": null,
+		"favorites.resources": [
+			{
+				"filePath": "node_modules/the-new-css-reset",
+				"group": "Default"
+			},
+			{
+				"filePath": "node_modules/@massimo-cassandro",
+				"group": "Default"
+			}
+		]
+	}
+}
