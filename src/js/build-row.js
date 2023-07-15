@@ -22,6 +22,8 @@
 
 import { print_icon } from './print-icon';
 
+
+
 export function build_row(data) {
 
   data.authors = JSON.parse(data.authors);
@@ -43,36 +45,39 @@ export function build_row(data) {
         </div>
 
         <div class="info">
-          <span class="tags-wrapper">
-            ${data.amz? '<strong class="mr-1 badge">amz</strong>' : ''}
-            ${data.tags.length?
-              `${print_icon({id: 'tag', svg_class: 'icon top-adjust dark mr-1'})}
-              <span class="tags">${data.tags.map(t => `<span role="button" data-tag-id="${t.id}">${t.name}</span>`).join('/')}</span>`
-            : ''}
-          </span>
+          ${(data.amz || data.tags.length) ?
+            `<span class="tags-wrapper">
+              ${data.amz? '<strong class="mr-1 badge">amz</strong>' : ''}
+              ${data.tags.length?
+                `${print_icon({id: 'tag', svg_class: 'icon top-adjust dark'})}
+                <span class="tags">${data.tags.map(t => `<span role="button" data-tag-id="${t.id}">${t.name}</span>`).join('/')}</span>`
+              : ''}
+            </span>`
+          : ''}
+
           <span class="formats-wrapper">
-           ${print_icon({id: 'file', svg_class: 'icon top-adjust dark mr-1'})}
-          <span class="file-formats">${data.files_format?? '&mdash;'}</span>
+            ${print_icon({id: 'file', svg_class: 'icon top-adjust dark'})}
+            <span class="file-formats">${data.files_format?? '&mdash;'}</span>
           </span>
         </div>
 
         <div class="info">
-          <time class="text-muted text-nowrap ml-1">
-            ${data.timestamp?
-              `${print_icon({id: 'calendar-blank', svg_class: 'icon top-adjust dark'})}
-              ${new Date(data.timestamp).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' })}`
-            : ''}
-          </time>
+          ${data.timestamp?
+            `<time class="text-muted text-nowrap" datetime="${data.timestamp}">
+              ${print_icon({id: 'calendar-blank', svg_class: 'icon top-adjust dark'})}
+              ${new Date(data.timestamp).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' })}
+            </time>`
+          : ''}
 
           <span>
-            ${print_icon({id: 'books', svg_class: 'icon top-adjust dark mr-1'})}
+            ${print_icon({id: 'books', svg_class: 'icon top-adjust dark'})}
             <span class="scaffale">${data.scaffale?? '\u2014'}</span>
           </span>
 
           ${(data.data_lettura || data.rating)?
             `<span>
               ${data.data_lettura? print_icon({id: 'eyeglasses', svg_class: 'icon top-adjust dark'}) : ''}
-              <span class="text-muted mx-1">${data.data_lettura? new Date(data.data_lettura).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' }) : ''}</span>
+              <time class="text-muted mx-1" datetime=${data.data_lettura}>${data.data_lettura? new Date(data.data_lettura).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' }) : ''}</time>
               <span class="rating">${data.rating? '\u2605'.repeat(data.rating) : ''}</span>
             </span>`
           : ''}
