@@ -22,7 +22,12 @@
 
 import { print_icon } from './print-icon';
 
-
+function dateStringToIso(str) {
+  const d = new Date(str);
+  return  d.getFullYear() + '-' +
+    String(d.getMonth() + 1).padStart(2, '0') + '-' +
+    String(d.getDate()).padStart(2, '0');
+}
 
 export function build_row(data) {
 
@@ -63,7 +68,7 @@ export function build_row(data) {
 
         <div class="info">
           ${data.timestamp?
-            `<time class="text-muted text-nowrap" datetime="${data.timestamp}">
+            `<time class="text-muted text-nowrap" datetime="${dateStringToIso(data.timestamp)}">
               ${print_icon({id: 'calendar-blank', svg_class: 'icon top-adjust dark'})}
               ${new Date(data.timestamp).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' })}
             </time>`
@@ -77,7 +82,7 @@ export function build_row(data) {
           ${(data.data_lettura || data.rating)?
             `<span>
               ${data.data_lettura? print_icon({id: 'eyeglasses', svg_class: 'icon top-adjust dark'}) : ''}
-              <time class="text-muted mx-1" datetime=${data.data_lettura}>${data.data_lettura? new Date(data.data_lettura).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' }) : ''}</time>
+              <time class="text-muted mx-1" datetime=${dateStringToIso(data.data_lettura)}>${data.data_lettura? new Date(data.data_lettura).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' }) : ''}</time>
               <span class="rating">${data.rating? '\u2605'.repeat(data.rating) : ''}</span>
             </span>`
           : ''}
