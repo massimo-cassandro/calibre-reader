@@ -27,6 +27,10 @@ if(!empty($_GET['authorId'])) {
   $where[] = "(serie_id = :s)";
   $orderByKey = $orderByKey? $orderByKey : 'serie';
 
+} else if(!empty($_GET['scaffaleId'])) {
+  $where[] = "(scaffale_id = :sc)";
+  $orderByKey = $orderByKey? $orderByKey : 'serie';
+
 } else if(!empty($_GET['tagId'])) {
   $join[] = "INNER JOIN books_tags_link as tal ON ( tal.book = books.id AND tal.tag = :t )";
 
@@ -100,7 +104,7 @@ $q = "select distinct
   comments.text as comment,
   (ratings.rating / 2) as rating,
   ifnull(custom_column_19.value, 0) as amz, /* amazon */
-  custom_column_23.value as scaffale, /* scaffale */
+  custom_column_23.id as scaffale_id, custom_column_23.value as scaffale, /* scaffale */
   custom_column_13.value as data_lettura, /* data lettura */
   custom_column_25.value as prima_ediz, /* anno prima edizione */
   custom_column_3.value as mat_extra /* presenza materiale extra */
@@ -141,6 +145,9 @@ if(!empty($_GET['q'])) {
 }
 if(!empty($_GET['serieId'])) {
   $statement->bindValue(':s', $_GET['serieId'], SQLITE3_INTEGER);
+}
+if(!empty($_GET['scaffaleId'])) {
+  $statement->bindValue(':sc', $_GET['scaffaleId'], SQLITE3_INTEGER);
 }
 if(!empty($_GET['authorId'])) {
   $statement->bindValue(':a', $_GET['authorId'], SQLITE3_INTEGER);

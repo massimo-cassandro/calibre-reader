@@ -76,7 +76,7 @@ export function build_row(data) {
 
           <span>
             ${print_icon({id: 'books', svg_class: 'icon top-adjust dark'})}
-            <span class="scaffale">${data.scaffale?? '\u2014'}</span>
+            <span class="scaffale">${data.scaffale? `<span role="button" data-scaffale-id="${data.scaffale_id}">${data.scaffale}</span>` : '\u2014'}</span>
           </span>
 
           ${(data.data_lettura || data.rating)?

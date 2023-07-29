@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
     <title>Calibre reader</title>
     <?php include './favicon.incl.php' ?>
-    <link rel="stylesheet" href="calibre-reader.css?_=0.4.4" type="text/css" media="all">
-    <link rel="preload" href="calibre-reader-min.js?_=0.4.4" as="script">
+    <link rel="stylesheet" href="calibre-reader.css?_=0.5.1" type="text/css" media="all">
+    <link rel="preload" href="calibre-reader-min.js?_=0.5.1" as="script">
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
@@ -45,6 +45,6 @@
       <main class="result-wrapper"></main>
       <div class="spinner-wrapper"><div class="spinner"></div></div>
     </div>
-    <script src="calibre-reader-min.js?_=0.4.4"></script>
+    <script src="calibre-reader-min.js?_=0.5.1"></script>
   </body>
 </html>

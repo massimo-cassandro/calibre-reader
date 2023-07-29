@@ -110,6 +110,22 @@ params.result_wrapper.addEventListener('click', e => {
     execute_search();
   }
 
+  // scaffale
+  if(e.target.hasAttribute('data-scaffale-id')) {
+
+    document.getElementById('orderBy-serie').click();
+
+    search_info = {
+      type: 'scaffale',
+      value: e.target.innerText
+    };
+    search_params = {
+      scaffaleId: +e.target.dataset.scaffaleId,
+    };
+    searchInput.value = '';
+    execute_search();
+  }
+
 
   // https://frontendcoding.com/getting-the-height-of-a-hidden-element/
   function getHiddenHeight(el) {
