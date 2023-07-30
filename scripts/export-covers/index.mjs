@@ -53,7 +53,7 @@ db.all(q, [], (err, rows) => {
     throw err;
   }
 
-  console.log(`processing ${rows} rows...`);
+  console.log(`processing ${rows.length} rows...`);
 
   rows.forEach((row) => {
 
