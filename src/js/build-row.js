@@ -110,6 +110,7 @@ export function build_row(data) {
     </div>
     ${data.comment? `<section class="details">
       <div>
+        ${+data.has_cover? `<div class="cover"><img src="./covers/${data.id}.webp" alt="Cover" loading="lazy"></div>` : ''}
         ${data.comment}
       </div>
     </section>` : ''}

@@ -1,7 +1,7 @@
 {
   "name": "calibre-reader-1",
   "description": "Calibre reader (v.1)",
-  "version": "0.6.0",
+  "version": "0.6.1",
   "license": "MIT",
   "author": "Massimo Cassandro",
   "type": "module",
