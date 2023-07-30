@@ -38,6 +38,10 @@ export function build_row(data) {
   return `<article class="book">
     <div class="book-inner">
 
+      <div class="book-cover">
+        ${+data.has_cover? `<img src="./covers/${data.id}.webp" alt="Cover" loading="lazy">` : ''}
+      </div>
+
       <div class="book-data">
         <div class="author">
           ${data.authors.map(a => `<span role="button" data-author-id="${a.id}">${a.name}</span>`).join(', ')}

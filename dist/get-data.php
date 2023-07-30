@@ -74,6 +74,7 @@ $is_authors_sort = count(preg_grep('/authors_sort/', [...$where, ...$orderBy])) 
 
 $q = "select distinct
   books.id, books.title, strftime('%Y', books.pubdate) as pub_year, books.timestamp,
+  books.has_cover,
   series.id as serie_id, series.name as serie, books.series_index,
   publishers.name as publisher,
 

@@ -23,6 +23,14 @@
   }
 }
 
+.book-cover {
+  flex: 0 1 120px;
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 .book-utils {
   display: flex;
   flex: 0;
