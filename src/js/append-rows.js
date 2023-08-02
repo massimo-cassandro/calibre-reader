@@ -24,8 +24,8 @@ const search_params_defaults = {
       append_rows(search_params);
     }
   },{
-    threshold: 0.01,
-    rootMargin: '50px 0px' // NB: valori bassi (20px) possono influire con browser mobili con barra indirizzi a scomparsa
+    threshold: 0,
+    rootMargin: '40px 0px' // NB: valori bassi (20px) possono influire con browser mobili con barra indirizzi a scomparsa
   });
 
 
@@ -72,12 +72,12 @@ export async function append_rows(user_params = {}) {
     observer_element.remove();
     observer_element = null;
   }
-if(search_params.pag === 0) {
+
   params.result_wrapper.insertAdjacentHTML('beforeend',
     data.map(row => build_row(row)).join('')
   );
 
-}
+
 
   if(data.length < search_params.limit ) {
     params.result_wrapper.insertAdjacentHTML('beforeend',
@@ -91,7 +91,7 @@ if(search_params.pag === 0) {
     scrolling_observer.observe(observer_element);
   }
 
-  // spinner_wrapper.classList.add('off');
+  spinner_wrapper.classList.add('off');
   params.search_form.disabled = false;
 
   // console.log('observer_element', observer_element !== null, 'pag', search_params.pag);

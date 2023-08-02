@@ -8,7 +8,7 @@ const config = {
     htmlFiles        : ['./dist/index.php'],
     skipDescrPrompt  : false,  // default false
     patchOnly        : false,  // default false
-    defaultDescr     : null    // default null
+    defaultDescr     : 'Fix'    // default null
   },
 
   /*
