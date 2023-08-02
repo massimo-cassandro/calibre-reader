@@ -68,6 +68,10 @@
       color: #fff;
       background-color: var(--blu-grigio-chiaro);
     }
+
+    &[disabled], [disabled] & {
+      color: var(--grigio);
+    }
   }
 
   &[disabled], [disabled] & {
