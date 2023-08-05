@@ -9,55 +9,46 @@ import { params } from './params.mjs';
 
 
 import sharp from 'sharp';
-// import imagemin from 'imagemin';
-// import imageminJpegtran from 'imagemin-jpegtran';
-// import imageminPngquant from 'imagemin-pngquant';
 
 export async function parseCover(id, path) {
 
-  console.log(`processing ${id}...`);
+
 
   const original_cover = params.calibre_dir + '/' + path + '/cover.jpg';
 
   try {
 
-    await sharp(original_cover)
-      .resize({ width: params.cover_width, fit: 'inside' })
-      .webp({
-        lossless: false,
-        quality: 75
-      })
-      /* .jpeg()
-      // .then(info => console.log(info))
-      // .toFile(`${output_dir}/${size[0]}`)
-      .toBuffer()
-      .then(bufferData => {
+    // https://sharp.pixelplumbing.com/api-output#avif
+    const stream = await sharp(original_cover);
 
-        // ottimizzazione JPG
-        // https://github.com/imagemin/imagemin
-        // https://github.com/imagemin/imagemin-pngquant
-        // https://github.com/imagemin/imagemin-jpegtran
-        // https://web.dev/use-imagemin-to-compress-images/
+    const promises = [
+      stream.clone().resize({ width: params.cover_minia_width, fit: 'inside' })
+        .avif({
+          lossless: false,
+          quality: 30,
+          effort: 4
+        })
+        .toBuffer()
+        .then( result => {
+          fs.writeFileSync(`${params.output_dir}/${id}-minia.avif`, result);
+        }),
 
-        imagemin.buffer(bufferData, {
-          plugins: [
-            imageminJpegtran({progressive: true}),
+      stream.clone().resize({ width: params.cover_width, fit: 'inside' })
+        .avif({
+          lossless: false,
+          quality: 30,
+          effort: 4
+        })
+        .toBuffer()
+        .then( result => {
+          fs.writeFileSync(`${params.output_dir}/${id}.avif`, result);
+        })
+    ];
 
-          ]
-        }).then( result => {
-          fs.writeFileSync(`${output_dir}/${size[0]}`, result);
+    Promise.all(promises)
+      .then( () => {
 
-          // aggiornamento last_import_file
-          // aggiornamento ad ogni ciclo per non perdere l'id in caso di errori
-          params.last_import.id = id;
-          fs.writeFileSync(params.last_import_file, JSON.stringify(params.last_import));
-
-        });
-
-      }) */
-      .toBuffer()
-      .then( result => {
-        fs.writeFileSync(`${params.output_dir}/${id}.webp`, result);
+        console.log(`... ${id} processed`);
 
         // aggiornamento last_import_file
         // aggiornamento ad ogni ciclo per non perdere l'id in caso di errori

@@ -142,20 +142,21 @@
   top: -1rem;
   z-index: -1;
   height: 0;
+  min-height: 0;
   overflow: hidden;
   // overscroll-behavior: contain;
   font-size: var(--medium);
   line-height: 1.5;
   background-color: var(--grigio-chiarissimo);
   border-radius: .4rem;
-  transition: height .3s linear;
+  transition: min-height .3s linear;
   > div {
     padding: 2rem 1rem 1rem;
   }
 
   .details-on & {
-    height: var(--details-height);
-    // overflow: auto;
+    height: auto;
+    min-height: var(--details-height);
   }
 
   h1, h2, h3, h4 {
@@ -164,12 +165,12 @@
   }
 
   .cover {
-    margin-bottom: 1rem;
+    margin-top: 1rem;
     text-align: center;
 
     img {
       max-width: 100%;
-      height: auto;
+      // height: auto;
     }
   }
 }

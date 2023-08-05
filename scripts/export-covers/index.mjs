@@ -42,7 +42,7 @@ if( params.last_import != null) {
   params.last_import = {};
 }
 
-q += ' ORDER BY id /* LIMIT 0,20 */';
+q += ' ORDER BY id /* LIMIT 0,50 */';
 
 // aggiornamento data
 // replace per adeguamwnto a formato sqlite

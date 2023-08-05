@@ -15,6 +15,10 @@
 			{
 				"filePath": "node_modules/@massimo-cassandro",
 				"group": "Default"
+			},
+			{
+				"filePath": "node_modules/glightbox",
+				"group": "Default"
 			}
 		]
 	}

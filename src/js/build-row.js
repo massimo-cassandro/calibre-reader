@@ -29,7 +29,13 @@ function dateStringToIso(str) {
     String(d.getDate()).padStart(2, '0');
 }
 
+
 export function build_row(data) {
+
+  let covers_base_url = './covers';
+  if(window.location.origin === 'http://localhost:8000' ) {
+    covers_base_url = 'http://calibre-reader.mazx.it/covers';
+  }
 
   data.authors = JSON.parse(data.authors);
   data.tags = JSON.parse(data.tags);
@@ -39,7 +45,7 @@ export function build_row(data) {
     <div class="book-inner">
 
       <div class="book-cover">
-        ${+data.has_cover? `<img src="./covers/${data.id}.webp" alt="Cover" loading="lazy">` : ''}
+        ${+data.has_cover? `<img src="${covers_base_url}/${data.id}-minia.avif" alt="Cover" loading="lazy">` : ''}
       </div>
 
       <div class="book-data">
@@ -110,8 +116,8 @@ export function build_row(data) {
     </div>
     ${data.comment? `<section class="details">
       <div>
-        ${+data.has_cover? `<div class="cover"><img src="./covers/${data.id}.webp" alt="Cover" loading="lazy"></div>` : ''}
-        ${data.comment}
+      ${data.comment}
+      ${+data.has_cover? `<div class="cover"><img src="${covers_base_url}/${data.id}.avif" alt="Cover" loading="lazy"></div>` : ''}
       </div>
     </section>` : ''}
   </article>`;

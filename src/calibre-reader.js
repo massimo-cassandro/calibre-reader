@@ -1,6 +1,9 @@
 import { append_rows } from './js/append-rows';
 import { params } from './js/params';
 
+
+// https://github.com/biati-digital/glightbox#readme
+
 // LISTENERS
 let search_params = {},
   search_info = null;
@@ -8,7 +11,7 @@ let search_params = {},
 const searchInput = params.search_form.querySelector('.search-input'),
   search_info_container= params.search_form.querySelector('.search-info'),
 
-  execute_search = () => {
+  execute_search = async () => {
     // console.log(search_params);
 
     search_info_container.innerHTML = search_info?
@@ -16,7 +19,8 @@ const searchInput = params.search_form.querySelector('.search-input'),
       : '';
 
     const orderBy = document.querySelector('.search-options input:checked')?.value?? null;
-    append_rows({...search_params, orderBy: orderBy});
+    await append_rows({...search_params, orderBy: orderBy});
+
   };
 
 // btn esegui ricerca
@@ -133,8 +137,18 @@ params.result_wrapper.addEventListener('click', e => {
       return null;
     }
 
-    const clone = el.cloneNode(true);
+    // // lazy images
+    // let img_height = 0;
+    // const cover = el.querySelector('.cover img[loading="lazy"]');
+    // if(cover) {
+    //   console.log('cover');
+    //   cover.loading = 'eager';
+    //   cover.fetchPriority = 'high';
+    //   img_height = cover.naturalHeight;
+    //   console.log(1, img_height);
+    // }
 
+    const clone = el.cloneNode(true);
     Object.assign(clone.style, {
       overflow: 'visible',
       height: 'auto',

@@ -1,7 +1,7 @@
 import terser  from '@rollup/plugin-terser';
 // import fs from 'fs';
 import node_resolve from '@rollup/plugin-node-resolve';
-// import commonjs from '@rollup/plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 
 // https://github.com/hyhappy/rollup-plugin-string-html
@@ -40,7 +40,7 @@ export default [
       //   },
       // }),
       node_resolve(),
-      // commonjs(),
+      commonjs(),
       terser(terserOptions),
       json()
     ],
