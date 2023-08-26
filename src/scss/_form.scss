@@ -15,6 +15,11 @@
   padding-top: .3rem;
   padding-bottom: .3rem;
   border: 1px solid var(--grigio);
+
+  &:focus {
+    border-color: var(--blu);
+    outline: 1px inset var(--blu);
+  }
 }
 
 .input-group {

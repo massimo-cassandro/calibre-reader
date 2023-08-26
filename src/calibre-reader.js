@@ -47,6 +47,8 @@ params.search_form.querySelector('.reset-btn').addEventListener('click', () => {
   params.search_form.querySelector('[type="radio"]:first-of-type').checked = true;
 
   input_search(true);
+  searchInput.disabled = false;
+  searchInput.focus({ focusVisible: true });
 }, false);
 
 // orderBy

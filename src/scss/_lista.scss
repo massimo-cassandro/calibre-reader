@@ -19,7 +19,7 @@
 .book-data {
   flex: 1;
   > div {
-    margin: .2rem 0;
+    margin: .3rem 0;
   }
 }
 
@@ -67,7 +67,7 @@
 .info {
   display: flex;
   flex-flow: row wrap;
-  gap: 1rem;
+  gap: .3rem 1rem;
   align-items: center;
   justify-content: flex-start;
 
