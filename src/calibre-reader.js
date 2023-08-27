@@ -24,10 +24,14 @@ const searchInput = params.search_form.querySelector('.search-input'),
   };
 
 // btn esegui ricerca
-const input_search = isReset => {
+const input_search = async isReset => {
   search_params = isReset? {} : {q: searchInput.value.trim()};
   search_info = null;
-  execute_search();
+  await execute_search();
+  if(isReset) {
+    // searchInput.disabled = false;
+    searchInput.focus({ focusVisible: true });
+  }
 };
 params.search_form.querySelector('.search-btn').addEventListener('click', () => {
   input_search();
@@ -47,8 +51,7 @@ params.search_form.querySelector('.reset-btn').addEventListener('click', () => {
   params.search_form.querySelector('[type="radio"]:first-of-type').checked = true;
 
   input_search(true);
-  searchInput.disabled = false;
-  searchInput.focus({ focusVisible: true });
+
 }, false);
 
 // orderBy
