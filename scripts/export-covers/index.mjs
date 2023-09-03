@@ -31,7 +31,7 @@ if(fs.existsSync(params.last_import_file)) {
   params.last_import = JSON.parse(fs.readFileSync(params.last_import_file));
 }
 
-const last_import_date = params.last_import.date? new Date(params.last_import.date) : null;
+const last_import_date = params.last_import?.date? new Date(params.last_import.date) : null;
 
 
 // https://www.sqlitetutorial.net/sqlite-nodejs/
