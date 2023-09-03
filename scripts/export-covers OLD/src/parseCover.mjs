@@ -52,6 +52,7 @@ export async function parseCover(id, path) {
 
         // aggiornamento last_import_file
         // aggiornamento ad ogni ciclo per non perdere l'id in caso di errori
+        // viene comunque sempre mantenuto l'indice più alto
         params.last_import.id = Math.max(id, params.last_import.id);
         fs.writeFileSync(params.last_import_file, JSON.stringify(params.last_import));
 
