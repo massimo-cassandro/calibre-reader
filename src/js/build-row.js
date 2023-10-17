@@ -70,13 +70,7 @@ export function build_row(data) {
             </span>`
           : ''}
 
-          <span class="formats-wrapper">
-            ${print_icon({id: 'file', svg_class: 'icon top-adjust dark'})}
-            <span class="file-formats">${data.files_format?? '&mdash;'}</span>
-          </span>
-        </div>
 
-        <div class="info">
           ${data.timestamp?
             `<time class="text-muted text-nowrap" datetime="${dateStringToIso(data.timestamp)}">
               ${print_icon({id: 'calendar-blank', svg_class: 'icon top-adjust dark'})}
@@ -84,10 +78,14 @@ export function build_row(data) {
             </time>`
           : ''}
 
-          <span>
-            ${print_icon({id: 'books', svg_class: 'icon top-adjust dark'})}
-            <span class="scaffale">${data.scaffale? `<span role="button" data-scaffale-id="${data.scaffale_id}">${data.scaffale}</span>` : '\u2014'}</span>
+          <span class="formats-wrapper">
+            ${print_icon({id: 'file', svg_class: 'icon top-adjust dark'})}
+            <span class="file-formats">${data.files_format?? '&mdash;'}</span>
           </span>
+
+        </div>
+
+        <div class="info">
 
           ${(data.data_lettura || data.rating)?
             `<span>
@@ -96,6 +94,12 @@ export function build_row(data) {
               <span class="rating">${data.rating? '\u2605'.repeat(data.rating) : ''}</span>
             </span>`
           : ''}
+
+          <span>
+            ${print_icon({id: 'books', svg_class: 'icon top-adjust dark'})}
+            <span class="scaffale">${data.scaffale? `<span role="button" data-scaffale-id="${data.scaffale_id}">${data.scaffale}</span>` : '\u2014'}</span>
+          </span>
+
         </div>
       </div>
 
