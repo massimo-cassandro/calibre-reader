@@ -11,7 +11,7 @@ const params = {
   last_import: null,
   output_dir: path.resolve(current_dir, '../../../dist/covers'),
   cover_minia_width: 90,
-  cover_width: 340,
+  cover_width: 560,
 };
 
 params.db_file = params.calibre_dir + '/metadata.db';
