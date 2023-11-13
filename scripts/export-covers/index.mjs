@@ -48,7 +48,6 @@ if( params.last_import != null) {
 q += ' ORDER BY id /* LIMIT 0,50 */';
 
 // aggiornamento data
-// replace per adeguamwnto a formato sqlite
 params.last_import.date = (new Date()).toISOString();
 
 db.all(q, [], (err, rows) => {
