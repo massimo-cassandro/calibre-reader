@@ -1,7 +1,7 @@
 {
   "name": "calibre-reader-1",
   "description": "Calibre reader",
-  "version": "0.7.4",
+  "version": "0.8.0",
   "license": "MIT",
   "author": "Massimo Cassandro",
   "type": "module",
@@ -48,6 +48,8 @@
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-terser": "^0.4.0",
+    "basic-ftp": "^5.0.3",
+    "dotenv": "^16.3.1",
     "gulp": "^4.0.2",
     "gulp-dom": "^1.0.0",
     "gulp-inject-string": "^1.1.2",

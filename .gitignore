@@ -3,3 +3,5 @@
 node_modules
 dist/covers
 dist/covers-last-import.json
+
+.env
