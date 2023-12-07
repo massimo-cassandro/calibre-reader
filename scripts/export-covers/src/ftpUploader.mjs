@@ -6,10 +6,15 @@ import * as path from 'path';
 import * as fs from 'fs';
 // import * as url from 'url';
 import 'dotenv/config'; // or --env-file=.env calling the script (node >= 20)
+import chalk from 'chalk';
 
 // https://github.com/patrickjuchli/basic-ftp#readme
+// https://github.com/chalk/chalk
 
-const __dirname = new URL('.', import.meta.url).pathname;
+
+const __dirname = new URL('.', import.meta.url).pathname,
+  coversDirPath = path.resolve(__dirname, '../../../dist/covers'),
+  compareDate = new Date(new Date().setMilliseconds(-1e5)).toISOString(); // now - 1e5 ms
 
 
 export async function ftpUploader() {
@@ -31,6 +36,7 @@ export async function ftpUploader() {
     // console.log(await client.list());
 
     // calibre db
+    console.log(chalk.blue('Caricamento calibre metadata.db'));
     await client.uploadFrom(path.join(process.env.HOME, '/Google Drive/ebook-calibre/metadata.db'), '/htdocs/db/metadata.db');
 
     // covers
@@ -39,18 +45,24 @@ export async function ftpUploader() {
 
     // lettura dir covers
     const covers = [];
-    fs.readdirSync(path.resolve(__dirname, '../../../dist/covers'),)
+    fs.readdirSync(coversDirPath)
       // .filter(f => /\.js$/.test(f))
       .filter(f => f !== '.DS_Store')
+      .filter(f => new Date(fs.statSync(`${coversDirPath}/${f}`).mtimeMs).toISOString() > compareDate)
       .forEach(file => {
         covers.push(file);
       });
 
     for await (const file of covers) {
+      console.log(chalk.green(`...caricamento ${file}`));
       await client.uploadFrom(
-        path.resolve(__dirname, `../../../dist/covers/${file}`),
+        `${coversDirPath}/${file}`,
         `/htdocs/calibre-reader/covers/${file}`
       );
+    }
+
+    if(!covers.length) {
+      console.log(chalk.cyan('Nessuna copertina da caricare'));
     }
 
 

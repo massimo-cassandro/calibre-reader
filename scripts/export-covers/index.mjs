@@ -19,6 +19,14 @@ import { params } from './src/params.mjs';
 import { coverHasBeenModified } from './src/check-cover-modified-date.mjs';
 import { parseCover } from './src/parseCover.mjs';
 import { ftpUploader } from './src/ftpUploader.mjs';
+import chalk from 'chalk';
+
+// import { NodeNotifier } from 'node-notifier';
+// https://github.com/mikaelbr/node-notifier
+
+// exec('osascript -e \'display notification "Avvio..." with title "Calibre Sync"\'');
+
+
 
 sqlite3.verbose();
 
@@ -86,7 +94,7 @@ params.last_import.date = (new Date()).toISOString();
   // close the database connection
   db.close();
 
-  console.log('*** END ***');
+  console.log('\n' + chalk.bgCyan.bold.black(' *** END *** ') + '\n');
   exec('osascript -e \'display notification "Calibre sync completato" with title "Calibre Sync"\'');
 
 })();
