@@ -27,11 +27,11 @@ const searchInput = params.search_form.querySelector('.search-input'),
 const input_search = async isReset => {
   search_params = isReset? {} : {q: searchInput.value.trim()};
   search_info = null;
-  await execute_search();
   if(isReset) {
     // searchInput.disabled = false;
     searchInput.focus({ focusVisible: true });
   }
+  await execute_search();
 };
 params.search_form.querySelector('.search-btn').addEventListener('click', () => {
   input_search();

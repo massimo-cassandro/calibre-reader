@@ -103,6 +103,7 @@
   margin: 0 !important;
   font-size: 1.3rem;
   text-align: center;
+  user-select: none;
 
   button {
     display: inline-block;
@@ -180,7 +181,7 @@
   aspect-ratio: 1;
   margin: 1rem auto;
   text-align: center;
-  img {
-    filter: grayscale(100%);
-  }
+  // img {
+  //   filter: grayscale(100%);
+  // }
 }

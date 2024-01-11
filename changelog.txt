@@ -29,3 +29,5 @@
 2023-09-03T15:03:43.873Z |            0.7.3 | getCovers script: checks for modified files only
 2023-10-17T20:56:46.773Z |            0.7.4 | Fix
 2023-12-03T20:57:14.693Z |            0.8.0 | ftp
+2023-12-26T14:48:39.468Z |            0.8.1 | Fix
+2024-01-11T16:39:13.730Z |            0.9.0 | favicon upd

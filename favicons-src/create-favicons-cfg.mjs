@@ -7,10 +7,10 @@ const params = [{
   // tutti i percorsi sono relativi alla dir di lavoro
 
   // immagine sorgente SVG o PNG 512x512
-  src_img: 'icona.svg',
+  src_img: 'favicon-blu-src.svg',
 
   // sorgente opzionale per immagini piccole (32px)
-  small_src_img: null,
+  small_src_img: 'favicon-blu-small-src.svg',
 
   // directory output (percorso relativo alla dir di lavoro)
   // se la dir non esiste, viene creata
@@ -27,12 +27,12 @@ const params = [{
   //   display: "fullscreen"
   // }
   webmanifest_extra: {
-    "short_name": "Calibre-reader",
-    "name": "Calibre-reader",
-    "start_url": ".",
-    "display": "standalone",
-    "theme_color": "#1D71B8",
-    "background_color": "#ffffff"
+    // 'short_name': 'Calibre-reader',
+    // 'name': 'Calibre-reader',
+    // 'start_url': '.',
+    // 'display': 'standalone',
+    // 'theme_color': '#1D71B8',
+    // 'background_color': '#ffffff'
   },
 
 
