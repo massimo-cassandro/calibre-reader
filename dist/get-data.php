@@ -65,7 +65,7 @@ switch ($orderByKey) {
     break;
 
   default: // recenti
-    $orderBy[] = "books.id DESC";
+    $orderBy[] = "books.timestamp DESC"; // "books.id DESC";
     break;
 }
 
