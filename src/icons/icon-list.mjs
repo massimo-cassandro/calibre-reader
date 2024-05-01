@@ -8,9 +8,10 @@ export const icons_list = [
   'amazon-logo',
   'books',
   'calendar-blank',
-  'chat-centered-text',
+  'chat-centered-dots',
   'eyeglasses',
   'file',
   'google-logo',
+  'image',
   'tag'
 ];

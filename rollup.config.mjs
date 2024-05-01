@@ -49,7 +49,7 @@ export default [
         file: './dist/calibre-reader-min.js',
         format: 'iife',
         sourcemap: true,
-        banner: `/*! Calibre-reader v.${p.version} - Massimo Cassandro ${anno} */`,
+        banner: `/*! Calibre-reader v.${p.version} - Massimo Cassandro 2023-${anno} */`,
         // footer: `//! ${new Date().toLocaleString('it-IT', {
         //   year: 'numeric',
         //   month: 'short',

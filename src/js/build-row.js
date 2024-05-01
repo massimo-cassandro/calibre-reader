@@ -116,11 +116,13 @@ export function build_row(data) {
     </div>
 
     <div class="details-trigger">
-      <button type="button"${!data.comment? ' disabled' : ''}>${print_icon({id: 'chat-centered-text', svg_class: 'icon'})}</button>
+      <button type="button"${(!data.comment && !data.has_cover)? ' disabled' : ''}>
+        ${print_icon({id: (data.comment || (!data.comment && !data.has_cover))? 'chat-centered-dots' : 'image', svg_class: 'icon'})}
+      </button>
     </div>
-    ${data.comment? `<section class="details">
+    ${(data.comment || data.has_cover)? `<section class="details">
       <div>
-      ${data.comment}
+      ${data.comment?? ''}
       ${+data.has_cover? `<div class="cover"><img src="${covers_base_url}/${data.id}.avif" alt="Cover" loading="lazy"></div>` : ''}
       </div>
     </section>` : ''}
