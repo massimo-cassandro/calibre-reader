@@ -1,14 +1,8 @@
 /* eslint-disable no-console */
-/* eslint-env node */
 
-/*
-Esporta nella dir dist/covers una copia delle copertine dal catalogo calibre, se non presenti
-o se quelle originali sono più recenti
-*/
-
-
+import * as os from 'os';
 import * as fs from 'fs';
-// import * as path from 'path';
+import * as path from 'path';
 // import { URL } from 'url';
 // import 'dotenv/config';
 import  { exec } from 'node:child_process';
@@ -27,7 +21,22 @@ import chalk from 'chalk';
 // exec('osascript -e \'display notification "Avvio..." with title "Calibre Sync"\'');
 
 
+// cancellazione copertine precedenti
+fs.readdir(params.output_dir, (err, files) => {
+  if (err) throw err;
 
+  for (const file of files) {
+    // fs.unlink(path.join(params.output_dir, file), (err) => {
+    //   if (err) throw err;
+    // });
+
+    fs.rename(path.join(params.output_dir, file), path.join(os.homedir(), '.Trash', file), function (err) {
+      if (err) throw err;
+    });
+  }
+});
+
+// DB
 sqlite3.verbose();
 
 const db = new sqlite3.Database(params.db_file, (err) => {
