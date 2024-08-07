@@ -54,7 +54,7 @@
     "stylelint-config-twbs-bootstrap": "^14.2.0"
   },
   "dependencies": {
-    "@massimo-cassandro/js-utilities": "^1.10.0",
+    "@massimo-cassandro/js-utilities": "^1.14.2",
     "node-notifier": "^10.0.1",
     "the-new-css-reset": "^1.8.4"
   }
