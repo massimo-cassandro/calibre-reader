@@ -12,7 +12,7 @@ import json from '@rollup/plugin-json';
 // https://github.com/kangax/html-minifier#options-quick-reference
 // import minifyHTML from 'rollup-plugin-minify-html-template-literals';
 
-import p from './package.json' assert { type: 'json' };
+import p from './package.json' with { type: 'json' };
 
 const terserOptions = {
     compress: {

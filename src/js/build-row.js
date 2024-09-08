@@ -60,9 +60,8 @@ export function build_row(data) {
         </div>
 
         <div class="info">
-          ${(data.amz || data.tags.length) ?
+          ${(data.tags.length) ?
             `<span class="tags-wrapper">
-              ${data.amz? '<strong class="mr-1 badge">amz</strong>' : ''}
               ${data.tags.length?
                 `${print_icon({id: 'tag', svg_class: 'icon top-adjust dark'})}
                 <span class="tags">${data.tags.map(t => `<span role="button" data-tag-id="${t.id}">${t.name}</span>`).join('/')}</span>`
@@ -86,6 +85,7 @@ export function build_row(data) {
         </div>
 
         <div class="info">
+          ${data.amz? `${print_icon({id: 'amazon-logo-fill', svg_class: 'icon icon-lg top-adjust'})}` : ''}
 
           ${(data.data_lettura || data.rating)?
             `<span>

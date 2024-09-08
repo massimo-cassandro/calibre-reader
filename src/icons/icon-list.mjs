@@ -6,6 +6,7 @@
 
 export const icons_list = [
   'amazon-logo',
+  'amazon-logo-fill',
   'books',
   'calendar-blank',
   'chat-centered-dots',

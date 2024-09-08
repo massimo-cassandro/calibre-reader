@@ -1,7 +1,7 @@
 {
   "name": "calibre-reader-1",
   "description": "Calibre reader",
-  "version": "0.9.2",
+  "version": "0.10.0",
   "license": "MIT",
   "author": "Massimo Cassandro",
   "type": "module",
@@ -26,12 +26,12 @@
     "@eslint/js": "^9.8.0",
     "@massimo-cassandro/dev-updater": "^1.0.3",
     "@massimo-cassandro/eslint-config": "^2.0.4",
-    "@massimo-cassandro/stylelint-config": "^1.1.4",
+    "@massimo-cassandro/stylelint-config": "^1.1.7",
     "@rollup/plugin-commonjs": "^25.0.3",
     "@rollup/plugin-json": "^6.0.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-terser": "^0.4.0",
-    "@stylistic/stylelint-plugin": "^3.0.0",
+    "@stylistic/stylelint-plugin": "^3.0.1",
     "basic-ftp": "^5.0.3",
     "chalk": "^5.3.0",
     "dotenv": "^16.3.1",
@@ -49,9 +49,9 @@
     "sass": "^1.61.0",
     "sharp": "^0.32.4",
     "sqlite3": "^5.1.6",
-    "stylelint": "^16.8.1",
+    "stylelint": "^16.9.0",
     "stylelint-config-css-modules": "^4.4.0",
-    "stylelint-config-twbs-bootstrap": "^14.2.0"
+    "stylelint-config-twbs-bootstrap": "^15.0.0"
   },
   "dependencies": {
     "@massimo-cassandro/js-utilities": "^1.14.2",
