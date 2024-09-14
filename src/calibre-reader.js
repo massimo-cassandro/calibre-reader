@@ -50,7 +50,7 @@ searchInput.addEventListener('keydown', e => {
   }
 }, false);
 
-// reset
+// reset search
 params.search_form.querySelector('.reset-btn').addEventListener('click', () => {
   searchInput.value = '';
   params.result_wrapper.innerHTML = '';
@@ -59,6 +59,15 @@ params.search_form.querySelector('.reset-btn').addEventListener('click', () => {
   input_search(true);
 
 }, false);
+
+
+// reset filter
+params.result_wrapper.addEventListener('click', e => {
+  if(e.target.id === 'reset-filter') {
+    execute_search();
+  }
+}, false);
+
 
 // orderBy
 params.orderByBtnsFset.addEventListener('click', e => {

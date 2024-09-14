@@ -21,7 +21,9 @@ export function loadList(list) {
     .then(data => {
 
 
-      params.result_wrapper.innerHTML = '<ul class="list">' +
+      params.result_wrapper.innerHTML = '<p class="text-center mt-1"><button class="btn btn-outline" type="button" id="reset-filter">Annulla</button></p>' +
+
+      '<ul class="list">' +
         data.map(item => `<li role="button" data-${list}-id="${item.id}">${item.name}</li>`).join('') +
       '</ul>';
 
@@ -29,6 +31,8 @@ export function loadList(list) {
       params.search_form.disabled = false;
       params.orderByBtnsFset.disabled = true;
       params.searchFieldsFset.disabled = true;
+
+
     })
     .catch(err => {
       /* eslint-disable no-console */
@@ -38,5 +42,7 @@ export function loadList(list) {
 
       alert('Si è verificato un errore (getList)');
     });
+
+
 
 }

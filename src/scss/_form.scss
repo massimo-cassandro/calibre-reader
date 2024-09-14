@@ -64,6 +64,17 @@
     border: 1px solid var(--blu-scuro);
   }
 
+  &.btn-outline {
+    color: var(--blu);
+    background-color: var(--grigio-chiarissimo);
+
+    &:hover {
+      color: #fff;
+      background-color: var(--blu);
+
+    }
+  }
+
   &.reset-btn {
     color: var(--blu-grigio);
     background-color: var(--grigio-chiaro);

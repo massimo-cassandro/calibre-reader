@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
     <title>Calibre reader</title>
     <?php include './favicon.incl.php' ?>
-    <link rel="stylesheet" href="calibre-reader.css?_=0.11.0" type="text/css" media="all">
-    <link rel="preload" href="calibre-reader-min.js?_=0.11.0" as="script">
+    <link rel="stylesheet" href="calibre-reader.css?_=0.11.1" type="text/css" media="all">
+    <link rel="preload" href="calibre-reader-min.js?_=0.11.1" as="script">
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
@@ -44,9 +44,9 @@
             <fieldset class="search-options filter">
               <legend>Filtra per</legend>
               <div>
-                <input type="radio" name="filter" id="filter-authors" value="authors">
+                <input type="radio" name="filter" id="filter-authors" value="author">
                 <label class="btn filter-btn" for="filter-authors">Autori</label>
-                <input type="radio" name="filter" id="filter-tags" value="tags">
+                <input type="radio" name="filter" id="filter-tags" value="tag">
                 <label class="btn filter-btn" for="filter-tags">Tags</label>
                 <input type="radio" name="filter" id="filter-scaffale" value="scaffale">
                 <label class="btn filter-btn" for="filter-scaffale">Scaffali</label>
@@ -60,6 +60,6 @@
       <main class="result-wrapper"></main>
       <div class="spinner-wrapper"><div class="spinner"></div></div>
     </div>
-    <script src="calibre-reader-min.js?_=0.11.0"></script>
+    <script src="calibre-reader-min.js?_=0.11.1"></script>
   </body>
 </html>

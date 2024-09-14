@@ -7,11 +7,18 @@ p {
 .text-nowrap {
   white-space: nowrap;
 }
+.text-center {
+  text-align: center;
+}
+
 strong {
   font-weight: 700;
 }
 em {
   font-style: italic;
+}
+.mt-1 {
+  margin-top: .5rem;
 }
 .mx-1 {
   margin-right: .2rem;
