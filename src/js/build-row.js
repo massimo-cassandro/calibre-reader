@@ -63,8 +63,8 @@ export function build_row(data) {
           ${(data.tags.length) ?
             `<span class="tags-wrapper">
               ${data.tags.length?
-                `${print_icon({id: 'tag', svg_class: 'icon top-adjust dark'})}
-                <span class="tags">${data.tags.map(t => `<span role="button" data-tag-id="${t.id}">${t.name}</span>`).join('/')}</span>`
+                `${print_icon({id: 'tag', svg_class: 'icon top-adjust dark'})}&nbsp;` +
+                `<span class="tags">${data.tags.map(t => `<span role="button" data-tag-id="${t.id}">${t.name}</span>`).join('/')}</span>`
               : ''}
             </span>`
           : ''}

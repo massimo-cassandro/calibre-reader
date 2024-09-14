@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&amp;display=swap" rel="stylesheet">
     <title>Calibre reader</title>
     <?php include './favicon.incl.php' ?>
-    <link rel="stylesheet" href="calibre-reader.css?_=0.10.0" type="text/css" media="all">
-    <link rel="preload" href="calibre-reader-min.js?_=0.10.0" as="script">
+    <link rel="stylesheet" href="calibre-reader.css?_=0.11.0" type="text/css" media="all">
+    <link rel="preload" href="calibre-reader-min.js?_=0.11.0" as="script">
     <meta name="robots" content="noindex, nofollow">
   </head>
   <body>
@@ -18,12 +18,14 @@
       <header>
         <div>
           <fieldset disabled class="search-form">
-            <div class="input-group">
-              <input type="search" class="search-input" placeholder="Cerca..." autofocus>
-              <button type="button" class="btn search-btn">Cerca</button>
-              <button type="button" class="btn reset-btn">Reset</button>
-            </div>
-            <fieldset class="search-options">
+            <fieldset class="searchFields">
+              <div class="input-group">
+                <input type="search" class="search-input" placeholder="Cerca..." autofocus>
+                <button type="button" class="btn search-btn">Cerca</button>
+                <button type="button" class="btn reset-btn">Reset</button>
+              </div>
+            </fieldset>
+            <fieldset class="search-options orderBy">
               <legend>Ordina per</legend>
               <div>
                 <input type="radio" name="orderBy" id="orderBy-recent" value="recent" checked>
@@ -38,6 +40,19 @@
                 <label class="btn orderBy-btn" for="orderBy-year" title="Anno prima edizione o pubblicazione">Anno</label>
               </div>
             </fieldset>
+
+            <fieldset class="search-options filter">
+              <legend>Filtra per</legend>
+              <div>
+                <input type="radio" name="filter" id="filter-authors" value="authors">
+                <label class="btn filter-btn" for="filter-authors">Autori</label>
+                <input type="radio" name="filter" id="filter-tags" value="tags">
+                <label class="btn filter-btn" for="filter-tags">Tags</label>
+                <input type="radio" name="filter" id="filter-scaffale" value="scaffale">
+                <label class="btn filter-btn" for="filter-scaffale">Scaffali</label>
+
+              </div>
+            </fieldset>
             <div class="search-info"></div>
           </fieldset>
         </div>
@@ -45,6 +60,6 @@
       <main class="result-wrapper"></main>
       <div class="spinner-wrapper"><div class="spinner"></div></div>
     </div>
-    <script src="calibre-reader-min.js?_=0.10.0"></script>
+    <script src="calibre-reader-min.js?_=0.11.0"></script>
   </body>
 </html>

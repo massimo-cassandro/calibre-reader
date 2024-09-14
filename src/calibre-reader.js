@@ -1,5 +1,6 @@
 import { append_rows } from './js/append-rows';
 import { params } from './js/params';
+import { loadList } from './js/load-list';
 
 
 // https://github.com/biati-digital/glightbox#readme
@@ -21,6 +22,11 @@ const searchInput = params.search_form.querySelector('.search-input'),
     const orderBy = document.querySelector('.search-options input:checked')?.value?? null;
     await append_rows({...search_params, orderBy: orderBy});
 
+    params.spinner_wrapper.classList.add('off');
+    params.search_form.disabled = false;
+    params.orderByBtnsFset.disabled = false;
+    params.searchFieldsFset.disabled = false;
+    Array.from(params.filterBtnsFset.querySelectorAll('input[type="radio"]'), (i) => i.checked = false);
   };
 
 // btn esegui ricerca
@@ -55,7 +61,7 @@ params.search_form.querySelector('.reset-btn').addEventListener('click', () => {
 }, false);
 
 // orderBy
-document.querySelector('.search-options')?.addEventListener('click', e => {
+params.orderByBtnsFset.addEventListener('click', e => {
 
   if(e.target.classList.contains('orderBy-btn')) {
 
@@ -63,6 +69,18 @@ document.querySelector('.search-options')?.addEventListener('click', e => {
     radio.checked = true;
 
     execute_search();
+  }
+}, false);
+
+// filter
+params.filterBtnsFset.addEventListener('click', e => {
+
+  if(e.target.classList.contains('filter-btn')) {
+
+    const radio = document.getElementById(e.target.getAttribute('for'));
+    radio.checked = true;
+
+    loadList(radio.value);
   }
 }, false);
 

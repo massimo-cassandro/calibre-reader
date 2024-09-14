@@ -3,8 +3,7 @@ import { build_row } from './build-row';
 // import { print_icon } from './print-icon';
 
 
-let search_params = {},
-  observer_element = null;
+let search_params = {};
 
 const search_params_defaults = {
     q: null,
@@ -16,7 +15,6 @@ const search_params_defaults = {
   },
 
   observer_markup = '<div id="observer" class="p-1"></div>',
-  spinner_wrapper = document.querySelector('.spinner-wrapper'),
 
   scrolling_observer = new IntersectionObserver( (entries) => {
     if( entries[0].isIntersecting) {
@@ -40,8 +38,8 @@ export async function append_rows(user_params = {}) {
     if(search_params.pag === 0) {
       window.scrollTo(0, 0);
       params.result_wrapper.innerHTML = '';
-      observer_element?.remove();
-      observer_element = null;
+      params.observer_element?.remove();
+      params.observer_element = null;
     }
 
     const url = new URL('./get-data.php', location.href),
@@ -63,14 +61,14 @@ export async function append_rows(user_params = {}) {
   }
 
   params.search_form.disabled = true;
-  spinner_wrapper.classList.remove('off');
+  params.spinner_wrapper.classList.remove('off');
 
   const data = await get_data();
 
-  if(data.length < search_params.limit && observer_element) {
-    scrolling_observer.unobserve(observer_element);
-    observer_element.remove();
-    observer_element = null;
+  if(data.length < search_params.limit && params.observer_element) {
+    scrolling_observer.unobserve(params.observer_element);
+    params.observer_element.remove();
+    params.observer_element = null;
   }
 
   params.result_wrapper.insertAdjacentHTML('beforeend',
@@ -85,15 +83,15 @@ export async function append_rows(user_params = {}) {
     );
   }
 
-  if(!observer_element && data.length === search_params.limit) {
+  if(!params.observer_element && data.length === search_params.limit) {
     params.result_wrapper.insertAdjacentHTML('afterend', observer_markup);
-    observer_element = document.getElementById('observer');
-    scrolling_observer.observe(observer_element);
+    params.observer_element = document.getElementById('observer');
+    scrolling_observer.observe(params.observer_element);
   }
 
-  spinner_wrapper.classList.add('off');
+  params.spinner_wrapper.classList.add('off');
   params.search_form.disabled = false;
 
-  // console.log('observer_element', observer_element !== null, 'pag', search_params.pag);
+  // console.log('params.observer_element', params.observer_element !== null, 'pag', search_params.pag);
 
 }
