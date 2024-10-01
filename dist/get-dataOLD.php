@@ -72,7 +72,7 @@ switch ($orderByKey) {
 $is_authors_sort = count(preg_grep('/authors_sort/', [...$where, ...$orderBy])) > 0;
 
 
-$q_ = "select distinct
+$q = "select distinct
   books.id, books.title, strftime('%Y', books.pubdate) as pub_year, books.timestamp,
   books.has_cover,
   series.id as serie_id, series.name as serie, books.series_index,
@@ -130,12 +130,11 @@ $q_ = "select distinct
 
   COLLATE NOACCENTS
   GROUP BY books.id
-
+  ORDER BY " . join(', ', $orderBy) . "
+  LIMIT {$start}, {$end}
 ";
 
 // var_dump($q); exit;
-
-$q1 = "select count(*) as tot "
 
 $statement = $db->prepare($q);
 
@@ -161,12 +160,6 @@ if(!empty($_GET['tagId'])) {
 
 $result = $statement->execute();
 
-
-
-
-$q .= "ORDER BY " . join(', ', $orderBy) . " LIMIT {$start}, {$end}";
-$statement = $db->prepare($q);
-$result = $statement->execute();
 
 $list = [];
 
