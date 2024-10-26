@@ -2,15 +2,15 @@
 /* eslint-env node */
 
 import * as fs from 'fs';
-// import * as path from 'path';
+import * as path from 'path';
 // import { URL } from 'url';
 
 import { params } from './params.mjs';
 
 
-export function coverHasBeenModified(path, check_date) {
+export function coverHasBeenModified(ebook_dir, check_date) {
 
-  const cover = params.calibre_dir + '/' + path + '/cover.jpg';
+  const cover = path.join(params.calibre_dir, ebook_dir, 'cover.jpg');
   if(fs.existsSync(cover)) {
 
     const stats = fs.statSync(cover);

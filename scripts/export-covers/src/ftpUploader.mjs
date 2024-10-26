@@ -2,19 +2,18 @@
 /* global process */
 
 import * as ftp from 'basic-ftp';
-import * as path from 'path';
+// import * as path from 'path';
 import * as fs from 'fs';
 // import * as url from 'url';
 import 'dotenv/config'; // or --env-file=.env calling the script (node >= 20)
 import chalk from 'chalk';
+import { params } from './params.mjs';
 
 // https://github.com/patrickjuchli/basic-ftp#readme
 // https://github.com/chalk/chalk
 
 
-const __dirname = new URL('.', import.meta.url).pathname,
-  coversDirPath = path.resolve(__dirname, '../../../dist/covers'),
-  compareDate = new Date(new Date().setMilliseconds(-1e5)).toISOString(); // now - 1e5 ms
+const compareDate = new Date(new Date().setMilliseconds(-1e5)).toISOString(); // now - 1e5 ms
 
 
 export async function ftpUploader() {
@@ -37,7 +36,7 @@ export async function ftpUploader() {
 
     // calibre db
     console.log(chalk.blue('Caricamento calibre metadata.db'));
-    await client.uploadFrom(path.join(process.env.HOME, '/Google Drive/ebook-calibre/metadata.db'), '/htdocs/db/metadata.db');
+    await client.uploadFrom(params.db_file, '/htdocs/db/metadata.db');
 
     // covers
     // NB carica anche DS_Store
@@ -45,10 +44,10 @@ export async function ftpUploader() {
 
     // lettura dir covers
     const covers = [];
-    fs.readdirSync(coversDirPath)
+    fs.readdirSync(params.covers_dir)
       // .filter(f => /\.js$/.test(f))
       .filter(f => f !== '.DS_Store')
-      .filter(f => new Date(fs.statSync(`${coversDirPath}/${f}`).mtimeMs).toISOString() > compareDate)
+      .filter(f => new Date(fs.statSync(`${params.covers_dir}/${f}`).mtimeMs).toISOString() > compareDate)
       .forEach(file => {
         covers.push(file);
       });
@@ -56,7 +55,7 @@ export async function ftpUploader() {
     for await (const file of covers) {
       console.log(chalk.green(`...caricamento ${file}`));
       await client.uploadFrom(
-        `${coversDirPath}/${file}`,
+        `${params.covers_dir}/${file}`,
         `/htdocs/calibre-reader/covers/${file}`
       );
     }

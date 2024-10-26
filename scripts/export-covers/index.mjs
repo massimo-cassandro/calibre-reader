@@ -22,15 +22,15 @@ import chalk from 'chalk';
 
 
 // cancellazione copertine precedenti
-fs.readdir(params.output_dir, (err, files) => {
+fs.readdir(params.covers_dir, (err, files) => {
   if (err) throw err;
 
   for (const file of files) {
-    // fs.unlink(path.join(params.output_dir, file), (err) => {
+    // fs.unlink(path.join(params.covers_dir, file), (err) => {
     //   if (err) throw err;
     // });
 
-    fs.rename(path.join(params.output_dir, file), path.join(os.homedir(), '.Trash', file), function (err) {
+    fs.rename(path.join(params.covers_dir, file), path.join(os.homedir(), '.Trash', file), function (err) {
       if (err) throw err;
     });
   }

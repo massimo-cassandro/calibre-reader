@@ -30,7 +30,7 @@ export async function parseCover(id, path) {
         })
         .toBuffer()
         .then( result => {
-          fs.writeFileSync(`${params.output_dir}/${id}-minia.avif`, result);
+          fs.writeFileSync(`${params.covers_dir}/${id}-minia.avif`, result);
         }),
 
       stream.clone().resize({ width: params.cover_width, fit: 'inside' })
@@ -41,7 +41,7 @@ export async function parseCover(id, path) {
         })
         .toBuffer()
         .then( result => {
-          fs.writeFileSync(`${params.output_dir}/${id}.avif`, result);
+          fs.writeFileSync(`${params.covers_dir}/${id}.avif`, result);
         })
     ];
 
