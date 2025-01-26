@@ -2,11 +2,6 @@
 
 $db_file = '../db/metadata.db';
 
-// local file
-if($_SERVER['HTTP_HOST'] == 'localhost:8000') {
-  $db_file = '/Users/mazz/Google Drive/ebook-calibre/metadata.db';
-}
-
 $db = new SQLite3($db_file, SQLITE3_OPEN_READONLY);
 
 $end = isset($_GET['limit'])? $_GET['limit'] : 20;
@@ -72,7 +67,7 @@ switch ($orderByKey) {
 $is_authors_sort = count(preg_grep('/authors_sort/', [...$where, ...$orderBy])) > 0;
 
 
-$q_ = "select distinct
+$q = "select distinct
   books.id, books.title, strftime('%Y', books.pubdate) as pub_year, books.timestamp,
   books.has_cover,
   series.id as serie_id, series.name as serie, books.series_index,
@@ -107,7 +102,8 @@ $q_ = "select distinct
   ifnull(custom_column_19.value, 0) as amz, /* amazon */
   custom_column_23.id as scaffale_id, custom_column_23.value as scaffale, /* scaffale */
   custom_column_13.value as data_lettura, /* data lettura */
-  custom_column_25.value as prima_ediz /* anno prima edizione */
+  custom_column_25.value as prima_ediz, /* anno prima edizione */
+  ifnull(custom_column_30.value, 0) as letto /* letto (bool) */
 
   FROM (books)
   LEFT JOIN books_series_link as bs ON (bs.book = books.id)
@@ -122,6 +118,7 @@ $q_ = "select distinct
   LEFT JOIN custom_column_23 ON (bl.value = custom_column_23.id)
   LEFT JOIN custom_column_13 ON (custom_column_13.book = books.id)
   LEFT JOIN custom_column_25 ON (custom_column_25.book = books.id)
+  LEFT JOIN custom_column_30 ON (custom_column_30.book = books.id)
   LEFT JOIN data ON (books.id = data.book)
 
   " . (count($join)?  ' ' . join(' ', $join) . ' ' : '') . "
@@ -135,7 +132,7 @@ $q_ = "select distinct
 
 // var_dump($q); exit;
 
-$q1 = "select count(*) as tot "
+// $q1 = "select count(*) as tot ";
 
 $statement = $db->prepare($q);
 

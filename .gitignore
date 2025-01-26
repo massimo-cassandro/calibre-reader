@@ -6,3 +6,4 @@ dist/covers-last-import.json
 /test.mjs
 
 .env
+/db
