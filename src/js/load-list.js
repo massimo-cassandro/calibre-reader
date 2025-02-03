@@ -12,7 +12,11 @@ export function loadList(list) {
   params.observer_element?.remove();
   params.result_wrapper.innerHTML = '';
 
-  const url = new URL(`./get-list.php?l=${list}`, location.href).toString();
+  const url = params.get_list_url.toString();
+  const searchParams = new URLSearchParams(url.search);
+  searchParams.set('l', list);
+  url.search = searchParams.toString();
+
   (async () => {
     const response = await fetch(url),
       data = await response.json();

@@ -2,6 +2,7 @@ import { append_rows } from './js/append-rows';
 import { params } from './js/params';
 import { loadList } from './js/load-list';
 
+import './calibre-reader.css';
 
 // https://github.com/biati-digital/glightbox#readme
 

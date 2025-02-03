@@ -1,3 +1,4 @@
+/* eslint-disable eqeqeq */
 
 /*
 [
@@ -20,7 +21,21 @@
 ]
 */
 
-import { print_icon } from './print-icon';
+import amazonLogoFill from '@icons/amazon-logo-fill.svg?inline';
+// import amazonLogo from '@icons/amazon-logo.svg?inline';
+import amazonLogoBold from '@icons/amazon-logo-bold.svg?inline';
+import books from '@icons/books.svg?inline';
+import calendarBlank from '@icons/calendar-blank.svg?inline';
+import chatCenteredDots from '@icons/chat-centered-dots.svg?inline';
+import eyeglasses from '@icons/eyeglasses.svg?inline';
+import file from '@icons/file.svg?inline';
+// import googleLogo from '@icons/google-logo.svg?inline';
+import googleLogoBold from '@icons/google-logo-bold.svg?inline';
+import image from '@icons/image.svg?inline';
+import tag from '@icons/tag.svg?inline';
+
+import { params } from './params';
+
 
 function dateStringToIso(str) {
   const d = new Date(str);
@@ -29,23 +44,24 @@ function dateStringToIso(str) {
     String(d.getDate()).padStart(2, '0');
 }
 
+function printIcon(icon, className='icon top-adjust dark', attrs='') {
+  icon = icon.replace(/<svg/, `<svg class="${className}"`);
+  if(attrs) {
+    icon = icon.replace(/<svg/, `<svg ${attrs}`);
+  }
+  return icon;
+}
 
 export function build_row(data) {
-
-  let covers_base_url = './covers';
-  if(window.location.origin === 'http://localhost:8000' ) {
-    covers_base_url = 'http://calibre-reader.mazx.it/covers';
-  }
 
   data.authors = JSON.parse(data.authors);
   data.tags = JSON.parse(data.tags);
 
-  /* eslint-disable eqeqeq */
   return `<article class="book">
     <div class="book-inner">
 
       <div class="book-cover">
-        ${+data.has_cover? `<img src="${covers_base_url}/${data.id}-minia.avif" alt="Cover" loading="lazy">` : ''}
+        ${+data.has_cover? `<img src="${params.covers_base_url}/${data.id}-minia.avif" alt="Cover" loading="lazy">` : ''}
       </div>
 
       <div class="book-data">
@@ -63,7 +79,7 @@ export function build_row(data) {
           ${(data.tags.length) ?
             `<span class="tags-wrapper">
               ${data.tags.length?
-                `${print_icon({id: 'tag', svg_class: 'icon top-adjust dark'})}&nbsp;` +
+                `${printIcon(tag)}&nbsp;` +
                 `<span class="tags">${data.tags.map(t => `<span role="button" data-tag-id="${t.id}">${t.name}</span>`).join('/')}</span>`
               : ''}
             </span>`
@@ -72,31 +88,31 @@ export function build_row(data) {
 
           ${data.timestamp?
             `<time class="text-muted text-nowrap" datetime="${dateStringToIso(data.timestamp)}">
-              ${print_icon({id: 'calendar-blank', svg_class: 'icon top-adjust dark'})}
+              ${printIcon(calendarBlank)}
               ${new Date(data.timestamp).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' })}
             </time>`
           : ''}
 
           <span class="formats-wrapper">
-            ${print_icon({id: 'file', svg_class: 'icon top-adjust dark'})}
+            ${printIcon(file)}
             <span class="file-formats">${data.files_format?? '&mdash;'}</span>
           </span>
 
         </div>
 
         <div class="info">
-          ${data.amz? `${print_icon({id: 'amazon-logo-fill', svg_class: 'icon icon-lg top-adjust'})}` : ''}
+          ${data.amz? `${printIcon(amazonLogoFill, 'icon icon-lg top-adjust')}` : ''}
 
           ${(data.data_lettura || data.rating)?
             `<span>
-              ${data.data_lettura? print_icon({id: 'eyeglasses', svg_class: 'icon top-adjust dark'}) : ''}
+              ${data.data_lettura? printIcon(eyeglasses) : ''}
               <time class="text-muted mx-1" datetime=${dateStringToIso(data.data_lettura)}>${data.data_lettura? new Date(data.data_lettura).toLocaleString('it-IT', { year: '2-digit', month: 'short', day: 'numeric' }) : ''}</time>
               <span class="rating">${data.rating? '\u2605'.repeat(data.rating) : ''}</span>
             </span>`
           : ''}
 
           <span>
-            ${print_icon({id: 'books', svg_class: 'icon top-adjust dark'})}
+            ${printIcon(books)}
             <span class="scaffale">${data.scaffale? `<span role="button" data-scaffale-id="${data.scaffale_id}">${data.scaffale}</span>` : '\u2014'}</span>
           </span>
 
@@ -105,11 +121,11 @@ export function build_row(data) {
 
       <div class="book-utils">
         <a href="https://www.google.it/search?q=${encodeURIComponent(data.authors.map(a => a.name).join(', '))}" target="_blank" rel="noopener noreferrer">
-          ${print_icon({id: 'google-logo', svg_class: 'icon bold'})}
+          ${printIcon(googleLogoBold, 'icon')}
         </a>
 
         <a href="https://www.amazon.it/s?k=${encodeURIComponent(data.authors.map(a => a.name).join(', '))}&i=digital-text" target="_blank" rel="noopener noreferrer">
-          ${print_icon({id: 'amazon-logo', svg_class: 'icon bold'})}
+          ${printIcon(amazonLogoBold, 'icon')}
         </a>
       </div>
 
@@ -117,15 +133,14 @@ export function build_row(data) {
 
     <div class="details-trigger">
       <button type="button"${(!data.comment && !data.has_cover)? ' disabled' : ''}>
-        ${print_icon({id: (data.comment || (!data.comment && !data.has_cover))? 'chat-centered-dots' : 'image', svg_class: 'icon'})}
+        ${printIcon((data.comment || (!data.comment && !data.has_cover))? chatCenteredDots : image, 'icon')}
       </button>
     </div>
     ${(data.comment || data.has_cover)? `<section class="details">
       <div>
       ${data.comment?? ''}
-      ${+data.has_cover? `<div class="cover"><img src="${covers_base_url}/${data.id}.avif" alt="Cover" loading="lazy"></div>` : ''}
+      ${+data.has_cover? `<div class="cover"><img src="${params.covers_base_url}/${data.id}.avif" alt="Cover" loading="lazy"></div>` : ''}
       </div>
     </section>` : ''}
   </article>`;
-  /* eslint-enable eqeqeq */
 }

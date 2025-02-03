@@ -19,6 +19,10 @@
 			{
 				"filePath": "node_modules/glightbox",
 				"group": "Default"
+			},
+			{
+				"filePath": "node_modules/@fontsource-variable",
+				"group": "Default"
 			}
 		]
 	}

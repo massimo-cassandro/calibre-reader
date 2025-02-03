@@ -1,6 +1,5 @@
 import { params } from './params';
 import { build_row } from './build-row';
-// import { print_icon } from './print-icon';
 
 
 let search_params = {};
@@ -42,7 +41,7 @@ export async function append_rows(user_params = {}) {
       params.observer_element = null;
     }
 
-    const url = new URL('./get-data.php', location.href),
+    const url = params.get_data_url,
       urlParams = url.searchParams;
 
     for(const i in search_params) {
