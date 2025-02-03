@@ -1,6 +1,6 @@
 <?php
 
-$db_file = '../db/metadata.db';
+$db_file = '../../db/metadata.db';
 
 
 $init_dev_file = './init-dev.php';
