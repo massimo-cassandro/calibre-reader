@@ -2,7 +2,10 @@
 
 $db_file = '../db/metadata.db';
 
-require_once './init-dev.php';
+
+$init_dev_file = './init-dev.php';
+if(file_exists($init_dev_file)) include $init_dev_file;
+
 
 // var_dump($db_file);
 

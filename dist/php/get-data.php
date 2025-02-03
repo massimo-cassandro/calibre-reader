@@ -2,8 +2,6 @@
 
 require_once 'init.php';
 
-$db = new SQLite3($db_file, SQLITE3_OPEN_READONLY);
-
 $end = isset($_GET['limit'])? $_GET['limit'] : 20;
 $start = isset($_GET['pag'])? $_GET['pag'] * $end : 0;
 $orderByKey = isset($_GET['orderBy'])? $_GET['orderBy'] : null;
@@ -11,11 +9,8 @@ $orderByKey = isset($_GET['orderBy'])? $_GET['orderBy'] : null;
 $where = [];
 $join = [];
 
-$SqlLite_version = SQLite3::version()['versionNumber'];
-
 
 if(!empty($_GET['authorId'])) {
-
   $join[] = "INNER JOIN books_authors_link as bal ON ( bal.book = books.id AND bal.author = :a )";
 
 } else if(!empty($_GET['serieId'])) {
@@ -34,13 +29,17 @@ if(!empty($_GET['authorId'])) {
 }
 
 $orderBy = [];
+
+// ordinamento serie
+if($isRecentSqlLite ) {
+  $ordinamento_serie = "serie ASC NULLS LAST, books.series_index ASC, authors_sort ASC";
+} else {
+  $ordinamento_serie = "IFNULL(serie, 'zzzz') ASC, books.series_index ASC, authors_sort ASC";
+}
+
 switch ($orderByKey) {
   case 'serie':
-    if($SqlLite_version >= 3030000) {
-      $orderBy[] = "serie ASC NULLS LAST, books.series_index ASC, authors_sort ASC";
-    } else {
-      $orderBy[] = "IFNULL(serie, 'zzzz') ASC, books.series_index ASC, authors_sort ASC";
-    }
+    $orderBy[] = $ordinamento_serie;
     break;
 
   case 'author':
@@ -51,12 +50,17 @@ switch ($orderByKey) {
     $orderBy[] = "books.sort ASC";
     break;
 
+  // TODO controllare ordinamento per anno in modo che consideri la serie
   case 'year':
-    if($SqlLite_version >= 3030000) {
-      $orderBy[] = "prima_ediz ASC NULLS LAST, pub_year ASC NULLS LAST";
+    if($isRecentSqlLite ) {
+      // $orderBy[] = "prima_ediz ASC NULLS LAST, pub_year ASC NULLS LAST";
+      $orderBy[] = "IFNULL(prima_ediz, pub_year) ASC NULLS LAST";
     } else {
-      $orderBy[] = "IFNULL(prima_ediz, 'zzzz') ASC, IFNULL(pub_year, 'zzzz') ASC";
+      // $orderBy[] = "IFNULL(prima_ediz, 'zzzz') ASC, IFNULL(pub_year, 'zzzz') ASC";
+      $orderBy[] = "IFNULL(IFNULL(prima_ediz, pub_year), 'zzzz') ASC";
     }
+    // edizioni nello stesso anno vengono ordinate per serie
+    $orderBy[] = $ordinamento_serie;
     break;
 
   default: // recenti

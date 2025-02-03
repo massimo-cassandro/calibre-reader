@@ -29,6 +29,26 @@
     max-width: 100%;
     height: auto;
   }
+
+  .letto & {
+    position: relative;
+    overflow: hidden;
+    &::before {
+      position: absolute;
+      top: .8rem;
+      left: -1.2rem;
+      z-index: 1;
+      width: 110%;
+      height: 1.1em;
+      font-size: .7rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      content: 'LETTO';
+      background-color: var(--blu);
+      rotate: -30deg;
+    }
+  }
 }
 
 .book-utils {

@@ -2,9 +2,7 @@
 
 require_once 'init.php';
 
-$db = new SQLite3($db_file, SQLITE3_OPEN_READONLY);
 
-$SqlLite_version = SQLite3::version()['versionNumber'];
 
 $list = $_GET['l'];
 

@@ -57,7 +57,7 @@ export function build_row(data) {
   data.authors = JSON.parse(data.authors);
   data.tags = JSON.parse(data.tags);
 
-  return `<article class="book">
+  return `<article class="book${data.letto? ' letto' : ''}">
     <div class="book-inner">
 
       <div class="book-cover">
