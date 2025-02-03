@@ -12,7 +12,7 @@ export function loadList(list) {
   params.observer_element?.remove();
   params.result_wrapper.innerHTML = '';
 
-  const url = params.get_list_url.toString();
+  const url = params.get_list_url;
   const searchParams = new URLSearchParams(url.search);
   searchParams.set('l', list);
   url.search = searchParams.toString();

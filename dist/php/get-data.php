@@ -9,9 +9,9 @@ $orderByKey = isset($_GET['orderBy'])? $_GET['orderBy'] : null;
 $where = [];
 $join = [];
 
-
 if(!empty($_GET['authorId'])) {
   $join[] = "INNER JOIN books_authors_link as bal ON ( bal.book = books.id AND bal.author = :a )";
+  $orderByKey = $orderByKey? $orderByKey : 'year';
 
 } else if(!empty($_GET['serieId'])) {
   $where[] = "(serie_id = :s)";
@@ -131,12 +131,10 @@ $q = "select distinct
 
   COLLATE NOACCENTS
   GROUP BY books.id
-
+  ORDER BY " . join(', ', $orderBy) . " LIMIT {$start}, {$end}
 ";
 
 // var_dump($q); exit;
-
-// $q1 = "select count(*) as tot ";
 
 $statement = $db->prepare($q);
 
@@ -157,16 +155,8 @@ if(!empty($_GET['tagId'])) {
   $statement->bindValue(':t', $_GET['tagId'], SQLITE3_INTEGER);
 }
 
-
 // var_dump($statement->getSQL(true)); exit;
 
-$result = $statement->execute();
-
-
-
-
-$q .= "ORDER BY " . join(', ', $orderBy) . " LIMIT {$start}, {$end}";
-$statement = $db->prepare($q);
 $result = $statement->execute();
 
 $list = [];

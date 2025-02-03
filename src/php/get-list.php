@@ -2,8 +2,6 @@
 
 require_once 'init.php';
 
-
-
 $list = $_GET['l'];
 
 
